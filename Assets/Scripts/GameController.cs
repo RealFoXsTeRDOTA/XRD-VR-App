@@ -1,30 +1,40 @@
+using System;
 using UnityEngine;
 
 public class GameController : MonoBehaviour
 {
-    private FinishHole[] holes;
+    private int _holesScore;
+    private int _hitsScore;
+    private int _killsScore;
+    private int _lives;
+    private UIController _uiController;
 
-    private void Awake()
+    public void Awake()
     {
-        holes = FindObjectsOfType<FinishHole>();
-        Debug.Log("Holes found: " + holes.Length);
-
-        foreach (var hole in holes)
-        {
-            hole.BallWentInHoleEvent += FinishedHole;
-        }
+        _uiController = FindObjectOfType<UIController>();
     }
 
-    private void OnDestroy()
+    public void UpHolesScore()
     {
-        foreach (var hole in holes)
-        {
-            hole.BallWentInHoleEvent -= FinishedHole;
-        }
+        _holesScore++;
+        _uiController.SetHolesScore(_holesScore);
     }
-
-    private void FinishedHole(int holeNumber)
+    
+    public void UpHitsScore()
     {
-        Debug.Log("A ball went in a hole #" + holeNumber);
+        _hitsScore++;
+        _uiController.SetHitsScore(_hitsScore);
+    }
+    
+    public void UpKillsScore()
+    {
+        _killsScore++;
+        _uiController.SetKillsScore(_killsScore);
+    }
+    
+    public void DownLife()
+    {
+        _lives--;
+        //_uiController.SetLives(_lives);
     }
 }
