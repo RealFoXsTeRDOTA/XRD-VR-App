@@ -18,7 +18,7 @@ public class FinishHole : MonoBehaviour
             return;
         }
         
-        _game.UpHolesScore();
         Destroy(gameObject);
+        _game.HitBallInHole();
     }
 }
