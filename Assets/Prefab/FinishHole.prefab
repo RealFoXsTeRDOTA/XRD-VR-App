@@ -98,7 +98,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bdac21c0fc29dfa45a8a7acfdd8d0a04, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  holeNumber: 0
 --- !u!136 &3044314503891960707
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -133,6 +132,7 @@ GameObject:
   - component: {fileID: 5969220031147536823}
   - component: {fileID: 6772180159538930176}
   - component: {fileID: 1844383959255738301}
+  - component: {fileID: 8277923759347936042}
   m_Layer: 0
   m_Name: Cube
   m_TagString: Untagged
@@ -205,6 +205,27 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &8277923759347936042
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7330113117899016812}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1.0000001, y: 1, z: 1.0000001}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &8128294007817838365
 GameObject:
   m_ObjectHideFlags: 0
@@ -249,6 +270,7 @@ GameObject:
   - component: {fileID: 5816007853466321621}
   - component: {fileID: 7545694793285127921}
   - component: {fileID: 7923581830331775088}
+  - component: {fileID: 2743567648883626875}
   m_Layer: 0
   m_Name: Cylinder
   m_TagString: Untagged
@@ -321,3 +343,26 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!136 &2743567648883626875
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8940224685719925354}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.50000006
+  m_Height: 2
+  m_Direction: 1
+  m_Center: {x: 0.000000059604638, y: 0, z: -0.00000008940695}
