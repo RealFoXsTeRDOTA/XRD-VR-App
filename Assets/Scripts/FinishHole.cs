@@ -3,6 +3,8 @@ using UnityEngine;
 public class FinishHole : MonoBehaviour
 { 
     private GameController _game;
+    
+    private const string golfBallTag = "GolfBall";
 
     private void Awake()
     {
@@ -11,8 +13,6 @@ public class FinishHole : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        const string golfBallTag = "GolfBall";
-
         if (!other.CompareTag(golfBallTag))
         {
             return;
