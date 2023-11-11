@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class Bat : MonoBehaviour
+public class Club : MonoBehaviour
 {
     private GameController _game;
 
@@ -9,13 +9,14 @@ public class Bat : MonoBehaviour
         _game = FindObjectOfType<GameController>();
     }
 
-    private void OnTriggerEnter(Collider other)
+    private void OnCollisionEnter(Collision other)
     {
         const string golfBallTag = "GolfBall";
-        if (!other.CompareTag(golfBallTag))
+        if (!other.gameObject.CompareTag(golfBallTag))
         {
             return;
         }
+
         _game.UpHitsScore();
     }
 }

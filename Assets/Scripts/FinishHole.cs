@@ -2,11 +2,11 @@ using UnityEngine;
 
 public class FinishHole : MonoBehaviour
 { 
-    private GameController game;
+    private GameController _game;
 
     private void Awake()
     {
-        game = FindObjectOfType<GameController>();
+        _game = FindObjectOfType<GameController>();
     }
 
     private void OnTriggerEnter(Collider other)
@@ -18,7 +18,7 @@ public class FinishHole : MonoBehaviour
             return;
         }
         
-        game.UpHolesScore();
+        _game.UpHolesScore();
         Destroy(gameObject);
     }
 }

@@ -2690,6 +2690,22 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1492212599234155604, guid: b621a521d51437240a4608c3750cada5, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2197252182402765062, guid: b621a521d51437240a4608c3750cada5, type: 3}
+      propertyPath: m_RightHandTurnAction.m_Reference
+      value: 
+      objectReference: {fileID: 1010738217276881514, guid: c348712bda248c246b8c49b3db54643f, type: 3}
+    - target: {fileID: 2197252182402765062, guid: b621a521d51437240a4608c3750cada5, type: 3}
+      propertyPath: m_LeftHandTurnAction.m_UseReference
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2197252182402765062, guid: b621a521d51437240a4608c3750cada5, type: 3}
+      propertyPath: m_RightHandTurnAction.m_UseReference
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3223345257938269910, guid: b621a521d51437240a4608c3750cada5, type: 3}
       propertyPath: m_Name
       value: XR Interaction Setup
@@ -2735,7 +2751,7 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents:
-    - {fileID: 8396077246594683733, guid: b621a521d51437240a4608c3750cada5, type: 3}
+    - {fileID: 0}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
