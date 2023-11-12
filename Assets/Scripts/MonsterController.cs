@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class Mons : MonoBehaviour
+public class MonsterController : MonoBehaviour
 {
     [SerializeField] 
     private float speed;
@@ -15,7 +15,7 @@ public class Mons : MonoBehaviour
         _game = FindObjectOfType<GameController>();
     }
 
-    void Update()
+    private void Update()
     {
         transform.position = Vector3.MoveTowards(transform.position, _player.transform.position, speed * Time.deltaTime);
         transform.LookAt(_player.transform);

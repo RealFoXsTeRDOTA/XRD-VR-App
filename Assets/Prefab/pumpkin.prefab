@@ -140,7 +140,7 @@ GameObject:
   - component: {fileID: -4746187250973837603}
   - component: {fileID: -8756662893050132244}
   m_Layer: 0
-  m_Name: Pumpkin
+  m_Name: pumpkin
   m_TagString: Monster
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -155,7 +155,7 @@ Transform:
   m_GameObject: {fileID: 3719395497478071300}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -5.5114965, y: 5, z: -5.6262965}
+  m_LocalPosition: {x: 0, y: 0.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:

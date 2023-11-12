@@ -45,8 +45,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 88a1b717ae46f0a4a99c407e0b8c16c2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _holePrefab: {fileID: 7293725277559458340, guid: e92aa441656620b46b820f31663e0d33,
-    type: 3}
+  holePrefab: {fileID: 7293725277559458340, guid: e92aa441656620b46b820f31663e0d33, type: 3}
+  holeSpawnPositions: []
 --- !u!114 &607259523327959709
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -61,3 +61,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   prefab: {fileID: 3719395497478071300, guid: 149914faacece2940a120e1783c4c6a9, type: 3}
   period: 5
+  monsterLimit: 0

@@ -1,10 +1,9 @@
 using UnityEngine;
-using UnityEngine.XR.Interaction.Toolkit;
 
 public class GameController : MonoBehaviour
 {
-    [SerializeField] private GameObject _holePrefab;
-    [SerializeField] private GameObject[] _holeSpawnPositions;
+    [SerializeField] private GameObject holePrefab;
+    [SerializeField] private GameObject[] holeSpawnPositions;
     
     private int _holesScore;
     private int _hitsScore;
@@ -34,11 +33,11 @@ public class GameController : MonoBehaviour
 
         do
         {
-            randomSpawnPosition = _holeSpawnPositions[Random.Range(0, _holeSpawnPositions.Length)].transform.position;
+            randomSpawnPosition = holeSpawnPositions[Random.Range(0, holeSpawnPositions.Length)].transform.position;
         } while (randomSpawnPosition == _lastSpawnPosition);
 
         _lastSpawnPosition = randomSpawnPosition;
-        Instantiate(_holePrefab, randomSpawnPosition, Quaternion.Euler(0f, Random.Range(0f, 360f), 0f));
+        Instantiate(holePrefab, randomSpawnPosition, Quaternion.Euler(0f, Random.Range(0f, 360f), 0f));
     }
 
     public void UpHolesScore()

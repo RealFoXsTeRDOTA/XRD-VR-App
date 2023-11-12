@@ -6,9 +6,9 @@ public class SpawnController : MonoBehaviour
     [SerializeField] 
     private GameObject prefab;
     [SerializeField]
-    public float period;
+    private float period;
     [SerializeField]
-    public int monsterLimit;
+    private int monsterLimit;
     
     private GameObject _player;
     private GameObject[] _spawners;
@@ -20,7 +20,7 @@ public class SpawnController : MonoBehaviour
         _spawners = GameObject.FindGameObjectsWithTag("MonsterSpawn");
     }
 
-    void Update()
+    private void Update()
     {
         if (!(Time.time > _nextActionTime) || !_spawners.Any())
         {
