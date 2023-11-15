@@ -368,7 +368,7 @@ LineRenderer:
   m_Positions: []
   m_Parameters:
     serializedVersion: 3
-    widthMultiplier: 0.02
+    widthMultiplier: 0.005
     widthCurve:
       serializedVersion: 2
       m_Curve:
@@ -2776,12 +2776,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aea4d1b30a393634dbef79442180e9bb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  healthBar: {fileID: 6382022109090417439}
   deathCanva: {fileID: 4802506199247362464}
   holesScore: {fileID: 5653237382088212500}
   hitsScore: {fileID: 969495811890143072}
   killsScore: {fileID: 6428046304896052775}
   rayInteractor: {fileID: 1787346994484839025}
+  spawnController: {fileID: 0}
+  images: []
 --- !u!1 &7107562847135207213
 GameObject:
   m_ObjectHideFlags: 0
