@@ -9,6 +9,8 @@ TagManager:
   - Monster
   - Anchor
   - Club
+  - RightController
+  - LeftController
   layers:
   - Default
   - TransparentFX

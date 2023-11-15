@@ -245,6 +245,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 2
+  playerTransform: {fileID: 3223345257938269910, guid: b621a521d51437240a4608c3750cada5, type: 3}
 --- !u!1 &3719395497478071302
 GameObject:
   m_ObjectHideFlags: 0
