@@ -1,13 +1,11 @@
 using UnityEngine;
 
 public class Club : MonoBehaviour
-{
-    private GameController _game;
-    
+{    
     private const string golfBallTag = "GolfBall";
-    private const string monsterTag = "Monster";
+    private GameController _game;
 
-    private void Awake()
+    private void Start()
     {
         _game = FindObjectOfType<GameController>();
     }
@@ -20,16 +18,5 @@ public class Club : MonoBehaviour
         }
 
         _game.UpHitsScore();
-    }
-    
-    private void OnTriggerEnter(Collider other)
-    {
-        if (!other.gameObject.CompareTag(monsterTag))
-        {
-            return;
-        }
-        
-        Destroy(other.gameObject);
-        _game.UpKillsScore();
     }
 }

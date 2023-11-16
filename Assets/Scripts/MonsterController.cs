@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class MonsterController : MonoBehaviour
 {
-    [SerializeField] 
+    [SerializeField]
     private float speed;
     private GameObject _player;
     private GameController _game;
