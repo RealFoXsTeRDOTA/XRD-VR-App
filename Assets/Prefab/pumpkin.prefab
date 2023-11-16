@@ -203,8 +203,8 @@ BoxCollider:
   m_ProvidesContacts: 1
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.5872402, y: 1.9423319, z: 0.36255836}
-  m_Center: {x: -0.0038671494, y: 0.97313696, z: 0.020770073}
+  m_Size: {x: 0.6870843, y: 1.9423319, z: 0.4152186}
+  m_Center: {x: 0.0021495223, y: 0.97313696, z: 0.086526565}
 --- !u!54 &-4746187250973837603
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -245,7 +245,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 2
-  playerTransform: {fileID: 3223345257938269910, guid: b621a521d51437240a4608c3750cada5, type: 3}
 --- !u!1 &3719395497478071302
 GameObject:
   m_ObjectHideFlags: 0

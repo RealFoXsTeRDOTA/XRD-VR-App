@@ -5,6 +5,9 @@ public class Shoot : MonoBehaviour
 {
     [SerializeField] private GameObject bulletPrefab;
     [SerializeField] private Transform bulletSpawnPosition;
+    [SerializeField] private float bulletSpeed;
+    [SerializeField] private float shootCooldown;
+    private float? _lastShotTime;
 
     private void Start()
     {
@@ -14,6 +17,15 @@ public class Shoot : MonoBehaviour
 
     private void StartShooting()
     {
-        Instantiate(bulletPrefab, bulletSpawnPosition.position, Quaternion.identity);
+        if (_lastShotTime != null && Time.time < _lastShotTime + shootCooldown) {
+            return;
+        }
+
+        var bullet = Instantiate(bulletPrefab);
+        bullet.transform.position = bulletSpawnPosition.position;
+        bullet.GetComponent<Rigidbody>().velocity = bulletSpawnPosition.forward * bulletSpeed;
+        Destroy(bullet, 3);
+        _lastShotTime = Time.time;
+        Debug.Log(_lastShotTime);
     }
 }

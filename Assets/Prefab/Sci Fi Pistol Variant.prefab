@@ -25,7 +25,7 @@ Transform:
   m_GameObject: {fileID: 754717694032556557}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.0125, z: 0.0418}
+  m_LocalPosition: {x: 0, y: 0.0125, z: 0.0541}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -76,7 +76,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8325601548976739271, guid: c3e8ab75a1f7fc047afcd5e056e57d9e, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: -0.0151
       objectReference: {fileID: 0}
     - target: {fileID: 8325601548976739271, guid: c3e8ab75a1f7fc047afcd5e056e57d9e, type: 3}
       propertyPath: m_LocalPosition.z
@@ -289,7 +289,7 @@ MonoBehaviour:
   m_SnapToColliderVolume: 1
   m_ReinitializeDynamicAttachEverySingleGrab: 1
   m_AttachEaseInTime: 0.15
-  m_MovementType: 2
+  m_MovementType: 0
   m_VelocityDamping: 1
   m_VelocityScale: 1
   m_AngularVelocityDamping: 1
@@ -357,8 +357,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ad06449bbef2d445a5db0227ef9a9f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bulletPrefab: {fileID: 0}
+  bulletPrefab: {fileID: 8489010920311737142, guid: 7cc61a9eb2bdf4d4a987d93aa795cd9d, type: 3}
   bulletSpawnPosition: {fileID: 702572952339450382}
+  bulletSpeed: 15
+  shootCooldown: 1
 --- !u!64 &1944838763847941842
 MeshCollider:
   m_ObjectHideFlags: 0
