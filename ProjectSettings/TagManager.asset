@@ -11,6 +11,7 @@ TagManager:
   - Club
   - RightController
   - LeftController
+  - Weapon
   layers:
   - Default
   - TransparentFX

@@ -62,10 +62,5 @@ public class GameController : MonoBehaviour
     {
         _lives--;
         _uiController.SetLives(_lives);
-
-        //if (_lives <= 0) // not sure this is necessary any longer.
-        //{
-        //    Destroy(GameObject.FindGameObjectWithTag(clubTag));
-        //}
     }
 }

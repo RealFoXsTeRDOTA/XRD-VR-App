@@ -1,4 +1,6 @@
+using System.Linq;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -61,6 +63,17 @@ public class UIController : MonoBehaviour
             deathCanva.SetActive(true);
             rayInteractor.SetActive(true);
             spawnController.SetActive(false);
+            var monsters = GameObject.FindGameObjectsWithTag("Monster");
+            foreach (var monster in monsters)
+            {
+                Destroy(monster);
+            }
+            var weapons = GameObject.FindGameObjectsWithTag("Club").ToList();
+            weapons.AddRange(GameObject.FindGameObjectsWithTag("Weapon"));
+            foreach (var weapon in weapons)
+            {
+                Destroy(weapon);
+            }
         }
     } 
     

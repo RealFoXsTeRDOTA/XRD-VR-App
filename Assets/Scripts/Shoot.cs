@@ -26,6 +26,5 @@ public class Shoot : MonoBehaviour
         bullet.GetComponent<Rigidbody>().velocity = bulletSpawnPosition.forward * bulletSpeed;
         Destroy(bullet, 3);
         _lastShotTime = Time.time;
-        Debug.Log(_lastShotTime);
     }
 }
