@@ -6,10 +6,12 @@ public class MonsterController : MonoBehaviour
     private float speed;
     private GameObject _player;
     private GameController _game;
-    
+    [SerializeField] private AudioClip deathSoundEffect;
+    [SerializeField] private AudioClip reachPlayerSoundEffect;
+
     private const string playerTag = "Player";
 
-    private void Awake()
+    private void Start()
     {
         _player = GameObject.FindGameObjectWithTag(playerTag);
         _game = FindObjectOfType<GameController>();
@@ -26,7 +28,13 @@ public class MonsterController : MonoBehaviour
         if (other.gameObject.CompareTag(playerTag))
         {
             _game.DownLife();
+            AudioSource.PlayClipAtPoint(reachPlayerSoundEffect, transform.position);
             Destroy(gameObject);
         }
+    }
+
+    public void PlayDeathSound()
+    {
+        AudioSource.PlayClipAtPoint(deathSoundEffect, transform.position);
     }
 }

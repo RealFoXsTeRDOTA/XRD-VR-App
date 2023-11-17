@@ -7,12 +7,14 @@ public class Shoot : MonoBehaviour
     [SerializeField] private Transform bulletSpawnPosition;
     [SerializeField] private float bulletSpeed;
     [SerializeField] private float shootCooldown;
+    private AudioSource _audioSource;
     private float? _lastShotTime;
 
     private void Start()
     {
         var interactable = GetComponent<XRGrabInteractable>();
         interactable.activated.AddListener(_ => StartShooting());
+        _audioSource = GetComponent<AudioSource>();
     }
 
     private void StartShooting()
@@ -26,5 +28,6 @@ public class Shoot : MonoBehaviour
         bullet.GetComponent<Rigidbody>().velocity = bulletSpawnPosition.forward * bulletSpeed;
         Destroy(bullet, 3);
         _lastShotTime = Time.time;
+        _audioSource.Play();
     }
 }

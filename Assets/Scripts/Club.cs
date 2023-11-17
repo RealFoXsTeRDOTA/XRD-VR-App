@@ -9,10 +9,12 @@ public class Club : MonoBehaviour
     [SerializeField] private float maxVelocity;
     private float? _lastShotTime;
     private float _hitCooldown = 1f;
+    private AudioSource _audioSource;
 
     private void Start()
     {
         _game = FindObjectOfType<GameController>();
+        _audioSource = GetComponent<AudioSource>();
         //currentPosition = transform.position;
         //lastPosition = transform.position;
     }
@@ -64,5 +66,6 @@ public class Club : MonoBehaviour
 
         _lastShotTime = Time.time;
         _game.UpHitsScore();
+        _audioSource.Play();
     }
 }

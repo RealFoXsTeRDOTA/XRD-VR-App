@@ -200,7 +200,7 @@ BoxCollider:
     m_Bits: 0
   m_LayerOverridePriority: 0
   m_IsTrigger: 1
-  m_ProvidesContacts: 1
+  m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
   m_Size: {x: 0.6870843, y: 1.9423319, z: 0.4152186}
@@ -245,6 +245,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 2
+  deathSoundEffect: {fileID: 8300000, guid: 0323c0894f6d6cc4c91ea09fcd3263c1, type: 3}
+  reachPlayerSoundEffect: {fileID: 8300000, guid: aea055f59e0611041b0a13c60fa46c0b, type: 3}
 --- !u!1 &3719395497478071302
 GameObject:
   m_ObjectHideFlags: 0
