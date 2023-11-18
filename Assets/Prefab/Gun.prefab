@@ -399,7 +399,7 @@ MonoBehaviour:
   bulletPrefab: {fileID: 8489010920311737142, guid: 7cc61a9eb2bdf4d4a987d93aa795cd9d, type: 3}
   bulletSpawnPosition: {fileID: 5709788131845443954}
   bulletSpeed: 15
-  shootCooldown: 1
+  shootCooldown: 0.75
 --- !u!64 &7848021746773340340
 MeshCollider:
   m_ObjectHideFlags: 0
