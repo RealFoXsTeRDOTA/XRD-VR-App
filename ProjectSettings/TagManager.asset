@@ -12,6 +12,7 @@ TagManager:
   - RightController
   - LeftController
   - Weapon
+  - LifeSpawner
   layers:
   - Default
   - TransparentFX

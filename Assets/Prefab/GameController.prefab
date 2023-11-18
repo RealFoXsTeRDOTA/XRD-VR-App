@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 7833790341104542445}
   - component: {fileID: 4650343596919240909}
   - component: {fileID: 607259523327959709}
+  - component: {fileID: 771257585815505594}
   m_Layer: 0
   m_Name: GameController
   m_TagString: Untagged
@@ -46,6 +47,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   holePrefab: {fileID: 7293725277559458340, guid: e92aa441656620b46b820f31663e0d33, type: 3}
+  gunPrefab: {fileID: 0}
   holeSpawnPositions: []
 --- !u!114 &607259523327959709
 MonoBehaviour:
@@ -62,3 +64,18 @@ MonoBehaviour:
   prefab: {fileID: 3719395497478071300, guid: 149914faacece2940a120e1783c4c6a9, type: 3}
   period: 5
   monsterLimit: 0
+  timeBetweenIndividualSpawns: 0
+  gameController: {fileID: 0}
+--- !u!114 &771257585815505594
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6690172532398476460}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4bc67dd29e1d4cd43ade2c4e6d35ec72, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  heartPrefab: {fileID: 1000010714891294, guid: 5a0537415d4017c4fad7a4986f502dc1, type: 3}

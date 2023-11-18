@@ -59,7 +59,7 @@ public class SpawnController : MonoBehaviour
         var spawner = _spawners.Length == 1 ?
             _spawners.First() :
             _spawners.OrderBy(s => (pos - s.transform.position).sqrMagnitude)
-                .ToArray()[Random.Range(2, _spawners.Length)];
+                .ToArray()[Random.Range(1, _spawners.Length)];
 
         Instantiate(prefab, spawner.transform.position, Quaternion.identity);
         _audioSource.Play();

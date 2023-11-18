@@ -18,7 +18,7 @@ public class GameController : MonoBehaviour
     public void Start()
     {
         _uiController = FindObjectOfType<UIController>();
-        _spawnController = FindObjectOfType<SpawnController>();
+        _spawnController = GetComponent<SpawnController>();
         _camera = GameObject.FindGameObjectWithTag("MainCamera");
         _uiController.SetLives(_lives);
         SpawnRandomHole();
@@ -82,6 +82,17 @@ public class GameController : MonoBehaviour
         _lives--;
         _uiController.SetLives(_lives);
     }
+    
+    public void UpLife()
+    {
+        if (_lives < 3)
+        {
+            _lives++;
+            _uiController.SetLives(_lives);
+        }
+    }
 
     public int HolesScore => _holesScore;
+    public int Lives => _lives;
+
 }
