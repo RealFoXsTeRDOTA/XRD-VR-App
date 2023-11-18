@@ -3,6 +3,7 @@ using UnityEngine;
 public class GameController : MonoBehaviour
 {
     [SerializeField] private GameObject holePrefab;
+    [SerializeField] private GameObject gunPrefab;
     [SerializeField] private GameObject[] holeSpawnPositions;
     
     private int _holesScore;
@@ -10,13 +11,15 @@ public class GameController : MonoBehaviour
     private int _killsScore;
     private int _lives = 3;
     private UIController _uiController;
+    private SpawnController _spawnController;
+    private GameObject _player;
     private Vector3 _lastSpawnPosition;
-    
-    private const string clubTag = "Club";
 
-    public void Awake()
+    public void Start()
     {
         _uiController = FindObjectOfType<UIController>();
+        _spawnController = FindObjectOfType<SpawnController>();
+        _player = GameObject.FindGameObjectWithTag("Player");
         _uiController.SetLives(_lives);
         SpawnRandomHole();
     }
@@ -40,10 +43,25 @@ public class GameController : MonoBehaviour
         Instantiate(holePrefab, randomSpawnPosition, Quaternion.Euler(0f, Random.Range(0f, 360f), 0f));
     }
 
-    public void UpHolesScore()
+    private void UpHolesScore()
     {
         _holesScore++;
         _uiController.SetHolesScore(_holesScore);
+
+        switch (_holesScore)
+        {
+            case 1:
+            case 3:
+                StartCoroutine(_spawnController.SpawnMonsters(1));
+                break;
+            case 2:
+                Instantiate(gunPrefab, _player.transform.forward + Vector3.forward * 1f, Quaternion.identity);
+                StartCoroutine(_spawnController.SpawnMonsters(2, 5));
+                break;
+            default:
+                StartCoroutine(_spawnController.StartContinuousSpawn());
+                break;
+        }
     }
     
     public void UpHitsScore()
