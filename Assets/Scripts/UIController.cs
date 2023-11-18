@@ -29,7 +29,7 @@ public class UIController : MonoBehaviour
     private GameObject _player;
     private Vector3 _playerInitialPosition;
  
-    private void Awake()
+    private void Start()
     {
         _player = GameObject.FindGameObjectWithTag("Player");
         deathCanva.SetActive(false);

@@ -2,64 +2,26 @@ using UnityEngine;
 
 public class Club : MonoBehaviour
 {    
-    private const string golfBallTag = "GolfBall";
+    private const string GolfBallTag = "GolfBall";
     private GameController _game;
-    private Vector3 currentPosition;
-    private Vector3 lastPosition;
-    [SerializeField] private float maxVelocity;
     private float? _lastShotTime;
-    private float _hitCooldown = 1f;
+    private const float HitCooldown = 1f;
     private AudioSource _audioSource;
 
     private void Start()
     {
         _game = FindObjectOfType<GameController>();
         _audioSource = GetComponent<AudioSource>();
-        //currentPosition = transform.position;
-        //lastPosition = transform.position;
     }
-
-    // TODO - Fix
-    //private void FixedUpdate()
-    //{
-    //    lastPosition = currentPosition;
-    //    currentPosition = transform.position;
-    //}
-
-    //private Vector3 GetCurrentVelocity()
-    //{
-    //    var velocity = ((currentPosition - lastPosition) / Time.deltaTime);
-    //    var velocityMagnitude = velocity.magnitude;
-
-    //    if (velocityMagnitude > maxVelocity)
-    //    {
-    //        velocity *= (maxVelocity / velocityMagnitude);
-    //    }
-
-    //    return velocity;
-    //}
-
-    //private void OnTriggerEnter(Collider other)
-    //{
-    //    if (!other.gameObject.CompareTag(golfBallTag))
-    //    {
-    //        return;
-    //    }
-
-    //    Debug.Log("Ball hit!");
-    //    _game.UpHitsScore();
-    //    var velocity = GetCurrentVelocity();
-    //    other.attachedRigidbody.velocity = velocity;
-    //}
 
     private void OnCollisionEnter(Collision other)
     {
-        if (!other.gameObject.CompareTag(golfBallTag))
+        if (!other.gameObject.CompareTag(GolfBallTag))
         {
             return;
         }
 
-        if (_lastShotTime != null && Time.time < _lastShotTime + _hitCooldown)
+        if (_lastShotTime != null && Time.time < _lastShotTime + HitCooldown)
         {
             return;
         }

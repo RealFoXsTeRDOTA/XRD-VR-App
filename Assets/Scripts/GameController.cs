@@ -22,6 +22,7 @@ public class GameController : MonoBehaviour
         _camera = GameObject.FindGameObjectWithTag("MainCamera");
         _uiController.SetLives(_lives);
         SpawnRandomHole();
+        UpHolesScore();
     }
 
     public void HitBallInHole()
