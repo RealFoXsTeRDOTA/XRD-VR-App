@@ -12,14 +12,14 @@ public class GameController : MonoBehaviour
     private int _lives = 3;
     private UIController _uiController;
     private SpawnController _spawnController;
-    private GameObject _player;
+    private GameObject _camera;
     private Vector3 _lastSpawnPosition;
 
     public void Start()
     {
         _uiController = FindObjectOfType<UIController>();
         _spawnController = FindObjectOfType<SpawnController>();
-        _player = GameObject.FindGameObjectWithTag("Player");
+        _camera = GameObject.FindGameObjectWithTag("MainCamera");
         _uiController.SetLives(_lives);
         SpawnRandomHole();
     }
@@ -55,7 +55,7 @@ public class GameController : MonoBehaviour
                 StartCoroutine(_spawnController.SpawnMonsters(1));
                 break;
             case 2:
-                Instantiate(gunPrefab, _player.transform.forward + Vector3.forward * 1f, Quaternion.identity);
+                Instantiate(gunPrefab, _camera.transform.position + new Vector3(0f, 2f, 2f), Quaternion.identity);
                 StartCoroutine(_spawnController.SpawnMonsters(2, 5));
                 break;
             default:
