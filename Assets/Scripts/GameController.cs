@@ -22,6 +22,7 @@ public class GameController : MonoBehaviour
         _camera = GameObject.FindGameObjectWithTag("MainCamera");
         _uiController.SetLives(_lives);
         SpawnRandomHole();
+        UpHolesScore();
     }
 
     public void HitBallInHole()
@@ -58,7 +59,7 @@ public class GameController : MonoBehaviour
                 Instantiate(gunPrefab, _camera.transform.position + new Vector3(0f, 2f, 2f), Quaternion.identity);
                 StartCoroutine(_spawnController.SpawnMonsters(2, 5));
                 break;
-            default:
+            case 4:
                 StartCoroutine(_spawnController.StartContinuousSpawn());
                 break;
         }
@@ -81,4 +82,6 @@ public class GameController : MonoBehaviour
         _lives--;
         _uiController.SetLives(_lives);
     }
+
+    public int HolesScore => _holesScore;
 }

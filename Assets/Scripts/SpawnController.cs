@@ -7,7 +7,8 @@ public class SpawnController : MonoBehaviour
     [SerializeField] private GameObject prefab;
     [SerializeField] private int period;
     [SerializeField] private int monsterLimit;
-    [SerializeField] private int timeBetweenIndividualSpawns;
+    [SerializeField] private float timeBetweenIndividualSpawns;
+    [SerializeField] private GameController gameController;
     
     private GameObject _player;
     private GameObject[] _spawners;
@@ -40,6 +41,8 @@ public class SpawnController : MonoBehaviour
     {
         while (true)
         {
+            ModifyDifficulty();
+            
             while (currentMonsters < monsterLimit)
             {
                 SpawnMonster();
@@ -60,5 +63,25 @@ public class SpawnController : MonoBehaviour
 
         Instantiate(prefab, spawner.transform.position, Quaternion.identity);
         _audioSource.Play();
+    }
+
+    private void ModifyDifficulty()
+    {
+        if (gameController.HolesScore >= 5 && gameController.HolesScore < 8)
+        {
+            monsterLimit = 4;
+            period = 30;
+        }
+        else if (gameController.HolesScore >= 8 && gameController.HolesScore < 10)
+        {
+            monsterLimit = 5;
+            timeBetweenIndividualSpawns = 3;
+        }
+        else
+        {
+            monsterLimit = 6;
+            period = 15;
+            timeBetweenIndividualSpawns = 1.5f;
+        }
     }
 }

@@ -183,7 +183,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5170956ae3f78174f9f6a867037eacc7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxVelocity: 0
 --- !u!114 &5335857369588308570
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -364,7 +363,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   destroyGameObjectOnImpact: 0
   checkForMinVelocity: 1
-  minVelocityForKill: 1.5
+  minVelocityForKill: 1
 --- !u!82 &7945267562286878085
 AudioSource:
   m_ObjectHideFlags: 0

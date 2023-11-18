@@ -7,7 +7,7 @@ public class MonsterKiller : MonoBehaviour
     private Rigidbody _rigidBody;
     [SerializeField] private bool destroyGameObjectOnImpact;
     [SerializeField] private bool checkForMinVelocity;
-    [SerializeField] private float minVelocityForKill = 1.5f;
+    [SerializeField] private float minVelocityForKill = 1f;
 
     private void Start()
     {

@@ -7,7 +7,7 @@ public class FinishHole : MonoBehaviour
     
     private const string golfBallTag = "GolfBall";
 
-    private void Awake()
+    private void Start()
     {
         _game = FindObjectOfType<GameController>();
     }
@@ -19,7 +19,6 @@ public class FinishHole : MonoBehaviour
             return;
         }
         
-        Debug.Log(other.attachedRigidbody.velocity.magnitude);
         if (other.attachedRigidbody.velocity.magnitude > 3f)
         {
             return;
