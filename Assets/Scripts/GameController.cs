@@ -21,7 +21,7 @@ public class GameController : MonoBehaviour
     private int _lives = 3;
     private Club _club;
     private SpawnController _spawnController;
-    private GameObject _camera;
+    private GameObject _golfBall;
     private Vector3 _lastSpawnPosition;
 
     [SerializeField] private Transform target;
@@ -31,7 +31,7 @@ public class GameController : MonoBehaviour
     private void Start()
     {
         _spawnController = GetComponent<SpawnController>();
-        _camera = GameObject.FindGameObjectWithTag("GolfBall");
+        _golfBall = GameObject.FindGameObjectWithTag("GolfBall");
         _club = FindObjectOfType<Club>();
         _club.BallHitEvent.AddListener(UpHitsScore);
         LifeChangedEvent?.Invoke(_lives);
@@ -69,7 +69,7 @@ public class GameController : MonoBehaviour
                 StartCoroutine(_spawnController.SpawnMonsters(1));
                 break;
             case 2:
-                Instantiate(gunPrefab, _camera.transform.position + new Vector3(0f, 1.5f, 0f), Quaternion.identity);
+                Instantiate(gunPrefab, _golfBall.transform.position + new Vector3(0f, 1.5f, 0f), Quaternion.identity);
                 StartCoroutine(_spawnController.SpawnMonsters(2, 5));
                 break;
             case 4:
