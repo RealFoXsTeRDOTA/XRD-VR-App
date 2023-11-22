@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Events;
 
 public class Club : MonoBehaviour
 {    
@@ -8,9 +9,10 @@ public class Club : MonoBehaviour
     private const float HitCooldown = 1f;
     private AudioSource _audioSource;
 
+    public UnityEvent BallHitEvent { get; } = new UnityEvent();
+
     private void Start()
     {
-        _game = FindObjectOfType<GameController>();
         _audioSource = GetComponent<AudioSource>();
     }
 
@@ -27,7 +29,7 @@ public class Club : MonoBehaviour
         }
 
         _lastShotTime = Time.time;
-        _game.UpHitsScore();
+        BallHitEvent?.Invoke();
         _audioSource.Play();
     }
 }

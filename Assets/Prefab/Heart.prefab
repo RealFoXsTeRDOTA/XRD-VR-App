@@ -116,6 +116,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   healEffect: {fileID: 8300000, guid: 589cd6891446c34459ee09bf438f37ed, type: 3}
   heartAudio: {fileID: 8300000, guid: 4e3ed6dda52fe884c9adb191cb103875, type: 3}
+  lifetimeInSeconds: 10
 --- !u!65 &8452867490583458105
 BoxCollider:
   m_ObjectHideFlags: 0

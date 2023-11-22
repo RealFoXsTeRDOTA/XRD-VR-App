@@ -6,14 +6,15 @@ public class Heart : MonoBehaviour
     private GameController _game;
     [SerializeField] private AudioClip healEffect;
     [SerializeField] private AudioClip heartAudio;
+    [SerializeField] private int lifetimeInSeconds;
 
     private const string playerTag = "Player";
 
-    void Start()
+    private void Start()
     {
         _game = FindObjectOfType<GameController>();
         AudioSource.PlayClipAtPoint(heartAudio, transform.position);
-        StartCoroutine(DestroyItselfCoroutine());
+        Destroy(gameObject, lifetimeInSeconds);
     }
     
     private void OnTriggerEnter(Collider other)
@@ -24,12 +25,5 @@ public class Heart : MonoBehaviour
             _game.UpLife();
             Destroy(gameObject);
         }
-       
-    }
-    
-    private IEnumerator DestroyItselfCoroutine()
-    { 
-        yield return new WaitForSeconds(5);
-        Destroy(gameObject);
     }
 }

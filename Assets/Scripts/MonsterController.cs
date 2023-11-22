@@ -9,7 +9,7 @@ public class MonsterController : MonoBehaviour
     [SerializeField] private AudioClip deathSoundEffect;
     [SerializeField] private AudioClip reachPlayerSoundEffect;
 
-    private const string playerTag = "Player";
+    private const string playerTag = "PlayerTransform";
 
     private void Start()
     {

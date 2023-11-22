@@ -1,8 +1,5 @@
-using System.Linq;
 using TMPro;
-using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class UIController : MonoBehaviour
 {    
@@ -22,36 +19,36 @@ public class UIController : MonoBehaviour
     private GameObject rayInteractor;
 
     [SerializeField]
-    private GameObject spawnController;
-
-    [SerializeField]
     private GameObject[] images;
-    private GameObject _player;
-    private Vector3 _playerInitialPosition;
+    private GameController _gameController;
  
     private void Start()
     {
-        _player = GameObject.FindGameObjectWithTag("Player");
         deathCanva.SetActive(false);
         rayInteractor.SetActive(false);
+        _gameController = FindObjectOfType<GameController>();
+        _gameController.LifeChangedEvent.AddListener(SetLives);
+        _gameController.KillsChangedEvent.AddListener(SetKillsScore);
+        _gameController.HitsChangedEvent.AddListener(SetHitsScore);
+        _gameController.HolesChangedEvent.AddListener(SetHolesScore);
     }
 
-    public void SetHolesScore(int score)
+    private void SetHolesScore(int score)
     {
         holesScore.text = $"Holes: {score}";
     }
 
-    public void SetHitsScore(int score)
+    private void SetHitsScore(int score)
     {
         hitsScore.text = $"Hits: {score}";
     }
 
-    public void SetKillsScore(int score)
+    private void SetKillsScore(int score)
     {
         killsScore.text = $"Kills: {score}";
     }
 
-    public void SetLives(int lives)
+    private void SetLives(int lives)
     {
         for (var i = 0; i < images.Length; i++)
         {
@@ -62,24 +59,14 @@ public class UIController : MonoBehaviour
         {
             deathCanva.SetActive(true);
             rayInteractor.SetActive(true);
-            spawnController.SetActive(false);
-            var monsters = GameObject.FindGameObjectsWithTag("Monster");
-            foreach (var monster in monsters)
-            {
-                Destroy(monster);
-            }
-            var weapons = GameObject.FindGameObjectsWithTag("Club").ToList();
-            weapons.AddRange(GameObject.FindGameObjectsWithTag("Weapon"));
-            foreach (var weapon in weapons)
-            {
-                Destroy(weapon);
-            }
         }
-    } 
-    
-    public void Restart()
+    }
+
+    private void OnDestroy()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-        _player.transform.position = _playerInitialPosition;
+        _gameController.LifeChangedEvent.RemoveListener(SetLives);
+        _gameController.KillsChangedEvent.RemoveListener(SetKillsScore);
+        _gameController.HitsChangedEvent.RemoveListener(SetHitsScore);
+        _gameController.HolesChangedEvent.RemoveListener(SetHolesScore);
     }
 }

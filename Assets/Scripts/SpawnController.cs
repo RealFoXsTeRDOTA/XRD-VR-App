@@ -19,9 +19,8 @@ public class SpawnController : MonoBehaviour
         _player = GameObject.FindGameObjectWithTag("Player");
         _spawners = GameObject.FindGameObjectsWithTag("MonsterSpawn");
         _audioSource = GetComponent<AudioSource>();
+        gameController.HolesChangedEvent.AddListener(ModifyDifficulty);
     }
-
-    private static int currentMonsters => GameObject.FindGameObjectsWithTag("Monster").Length;
 
     public IEnumerator SpawnMonsters(int count, int? initialWaitingTime = null)
     {
@@ -30,7 +29,7 @@ public class SpawnController : MonoBehaviour
             yield return new WaitForSeconds((int)initialWaitingTime);
         }
         
-        while (currentMonsters < count)
+        for (var i = 0; i < count; i++)
         {
             SpawnMonster();
             yield return new WaitForSeconds(timeBetweenIndividualSpawns);
@@ -41,9 +40,7 @@ public class SpawnController : MonoBehaviour
     {
         while (true)
         {
-            ModifyDifficulty();
-            
-            while (currentMonsters < monsterLimit)
+            for (var i = 0; i < monsterLimit; i++)
             {
                 SpawnMonster();
                 yield return new WaitForSeconds(timeBetweenIndividualSpawns);
@@ -65,14 +62,19 @@ public class SpawnController : MonoBehaviour
         _audioSource.Play();
     }
 
-    private void ModifyDifficulty()
+    private void ModifyDifficulty(int score)
     {
-        if (gameController.HolesScore >= 5 && gameController.HolesScore < 8)
+        Debug.Log(score);
+        if (score < 5)
+        {
+            return;
+        }
+        else if (score >= 5 && score < 8)
         {
             monsterLimit = 4;
             period = 30;
         }
-        else if (gameController.HolesScore >= 8 && gameController.HolesScore < 10)
+        else if (score >= 8 && score < 10)
         {
             monsterLimit = 5;
             timeBetweenIndividualSpawns = 3;
@@ -83,5 +85,10 @@ public class SpawnController : MonoBehaviour
             period = 15;
             timeBetweenIndividualSpawns = 1.5f;
         }
+    }
+
+    private void OnDestroy()
+    {
+        gameController.HolesChangedEvent.RemoveListener(ModifyDifficulty);
     }
 }

@@ -2,27 +2,21 @@ using UnityEngine;
 
 public class Ball : MonoBehaviour
 {
-
-    [SerializeField]
-    private LineRenderer lineRenderer;
+    [SerializeField] private LineRenderer lineRenderer;
     private GameObject _player;
-    private Rigidbody _rigidbody;
+    private const string playerTag = "PlayerTransform";
 
-    private const string playerTag = "Player";
-
-    
-    void Start()
+    private void Start()
     {
         _player = GameObject.FindGameObjectWithTag(playerTag);
-        _rigidbody = GetComponent<Rigidbody>();
     }
 
-    // Update is called once per frame
-    void Update()
+    private void FixedUpdate()
     {
         var playerPosition = _player.transform.position;
         var position = transform.position;
-        if ((playerPosition - transform.position).sqrMagnitude > 100 && _rigidbody.velocity.magnitude < 0.005)
+
+        if ((playerPosition - transform.position).sqrMagnitude > 100)
         {
             lineRenderer.enabled = true;
             lineRenderer.SetPosition(0, position);

@@ -1,26 +1,40 @@
+using System.Linq;
+using System.Threading.Tasks;
 using UnityEngine;
+using UnityEngine.Events;
+using UnityEngine.SceneManagement;
 
 public class GameController : MonoBehaviour
 {
     [SerializeField] private GameObject holePrefab;
     [SerializeField] private GameObject gunPrefab;
     [SerializeField] private GameObject[] holeSpawnPositions;
-    
+
+    public UnityEvent<int> HitsChangedEvent { get; } = new UnityEvent<int>();
+    public UnityEvent<int> LifeChangedEvent { get; } = new UnityEvent<int>();
+    public UnityEvent<int> KillsChangedEvent { get; } = new UnityEvent<int>();
+    public UnityEvent<int> HolesChangedEvent { get; } = new UnityEvent<int>();
+
     private int _holesScore;
     private int _hitsScore;
     private int _killsScore;
     private int _lives = 3;
-    private UIController _uiController;
+    private Club _club;
     private SpawnController _spawnController;
     private GameObject _camera;
     private Vector3 _lastSpawnPosition;
 
-    public void Start()
+    [SerializeField] private Transform target;
+    [SerializeField] private Transform xrOrigin;
+    [SerializeField] private Transform xrCamera;
+
+    private void Start()
     {
-        _uiController = FindObjectOfType<UIController>();
         _spawnController = GetComponent<SpawnController>();
-        _camera = GameObject.FindGameObjectWithTag("MainCamera");
-        _uiController.SetLives(_lives);
+        _camera = GameObject.FindGameObjectWithTag("GolfBall");
+        _club = FindObjectOfType<Club>();
+        _club.BallHitEvent.AddListener(UpHitsScore);
+        LifeChangedEvent?.Invoke(_lives);
         SpawnRandomHole();
     }
 
@@ -46,7 +60,7 @@ public class GameController : MonoBehaviour
     private void UpHolesScore()
     {
         _holesScore++;
-        _uiController.SetHolesScore(_holesScore);
+        HolesChangedEvent?.Invoke(_holesScore);
 
         switch (_holesScore)
         {
@@ -55,7 +69,7 @@ public class GameController : MonoBehaviour
                 StartCoroutine(_spawnController.SpawnMonsters(1));
                 break;
             case 2:
-                Instantiate(gunPrefab, _camera.transform.position + new Vector3(0f, 2f, 2f), Quaternion.identity);
+                Instantiate(gunPrefab, _camera.transform.position + new Vector3(0f, 1.5f, 0f), Quaternion.identity);
                 StartCoroutine(_spawnController.SpawnMonsters(2, 5));
                 break;
             case 4:
@@ -64,22 +78,44 @@ public class GameController : MonoBehaviour
         }
     }
     
-    public void UpHitsScore()
+    private void UpHitsScore()
     {
         _hitsScore++;
-        _uiController.SetHitsScore(_hitsScore);
+        HitsChangedEvent?.Invoke(_hitsScore);
     }
     
     public void UpKillsScore()
     {
         _killsScore++;
-        _uiController.SetKillsScore(_killsScore);
+        KillsChangedEvent?.Invoke(_killsScore);
     }
 
     public void DownLife()
     {
         _lives--;
-        _uiController.SetLives(_lives);
+        LifeChangedEvent?.Invoke(_lives);
+
+        if (_lives == 0)
+        {
+            _spawnController.enabled = false;
+            var monsters = GameObject.FindGameObjectsWithTag("Monster");
+
+            foreach (var monster in monsters)
+            {
+                Destroy(monster);
+            }
+
+            var weapons = GameObject.FindGameObjectsWithTag("Club").ToList();
+            weapons.AddRange(GameObject.FindGameObjectsWithTag("Weapon"));
+
+            foreach (var weapon in weapons)
+            {
+                Destroy(weapon);
+            }
+
+            var lifeSpawner = GetComponent<LifeSpawner>();
+            lifeSpawner.enabled = false;
+        }
     }
     
     public void UpLife()
@@ -87,11 +123,31 @@ public class GameController : MonoBehaviour
         if (_lives < 3)
         {
             _lives++;
-            _uiController.SetLives(_lives);
+            LifeChangedEvent?.Invoke(_lives);
         }
     }
 
-    public int HolesScore => _holesScore;
+    public void Restart()
+    {
+        var offset = xrCamera.position - xrOrigin.position;
+        offset.y = 0;
+        xrOrigin.position = target.position - offset;
+
+        var targetForward = target.forward;
+        targetForward.y = 0;
+        var cameraForward = xrCamera.forward;
+        cameraForward.y = 0;
+
+        var angle = Vector3.SignedAngle(cameraForward, targetForward, Vector3.up);
+        xrOrigin.RotateAround(xrCamera.position, Vector3.up, angle);
+
+        SceneManager.LoadScene(0);
+    }
+
     public int Lives => _lives;
 
+    private void OnDestroy()
+    {
+        _club.BallHitEvent.RemoveListener(UpHitsScore);
+    }
 }
