@@ -129,18 +129,6 @@ public class GameController : MonoBehaviour
 
     public void Restart()
     {
-        var offset = xrCamera.position - xrOrigin.position;
-        offset.y = 0;
-        xrOrigin.position = target.position - offset;
-
-        var targetForward = target.forward;
-        targetForward.y = 0;
-        var cameraForward = xrCamera.forward;
-        cameraForward.y = 0;
-
-        var angle = Vector3.SignedAngle(cameraForward, targetForward, Vector3.up);
-        xrOrigin.RotateAround(xrCamera.position, Vector3.up, angle);
-
         SceneManager.LoadScene(0);
     }
 
